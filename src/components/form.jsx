@@ -1,6 +1,6 @@
-import useImages from "@/hooks/useImages";
-import { Button } from "@material-tailwind/react";
-import { useRef } from "react";
+import useImages from '@/hooks/useImages';
+import { Button } from '@material-tailwind/react';
+import { useRef } from 'react';
 
 export function Form() {
   const inputFileRef = useRef(null);
@@ -19,17 +19,17 @@ export function Form() {
   }
 
   return (
-    <div className="w-full max-w-[400px] bg-primary px-10 flex flex-col">
+    <div className='w-full max-w-[400px] bg-primary px-10 flex flex-col'>
       <input
-        type="file"
-        className="hidden"
-        name="images"
+        type='file'
+        className='hidden'
+        name='images'
         multiple
-        accept="image/*"
+        accept='image/jpg,image/png,image/jpeg'
         ref={inputFileRef}
         onChange={handleChange}
       />
-      <Button type="button" className="bg-[#ec111a]" onClick={handleClick}>
+      <Button type='button' className='bg-[#ec111a]' onClick={handleClick}>
         Cargar imágenes
       </Button>
     </div>
