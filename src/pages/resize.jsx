@@ -10,8 +10,14 @@ export default function Resize() {
   const resize = useResize();
   const navigate = useNavigate();
 
-  function download() {
-    resize.download(images);
+  async function download() {
+    const resizedImages = await Promise.all(
+      images.map(async ({ file, width }) => {
+        return await resize.resize(file, width);
+      })
+    );
+
+    resize.download(resizedImages);
   }
 
   useEffect(() => {
