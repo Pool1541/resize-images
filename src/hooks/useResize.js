@@ -49,7 +49,7 @@ export default function useResize() {
 
     if (files.length === 0) return;
 
-    files.forEach(({ file }) => {
+    files.forEach((file) => {
       zip.file(`assets/${file.name}`, file);
     });
 
