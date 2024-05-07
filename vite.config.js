@@ -11,7 +11,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
-  base: 'https://pool_1541.github.io/resize-images',
+  base: '/resize-images/',
   build: {
     outDir: 'build'
   }
