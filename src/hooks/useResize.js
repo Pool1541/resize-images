@@ -1,3 +1,4 @@
+import { transformName } from '@/utils';
 import JSZip from 'jszip';
 
 export default function useResize() {
@@ -50,7 +51,8 @@ export default function useResize() {
     if (files.length === 0) return;
 
     files.forEach((file) => {
-      zip.file(`assets/${file.name}`, file);
+      const filename = transformName(file.name)
+      zip.file(`assets/${filename}`, file);
     });
 
     zip.generateAsync({ type: 'blob' }).then((content) => {
