@@ -1,9 +1,8 @@
-import { LabelsContext } from "@/contexts/labels-context"
-import { useContext } from "react"
-
+import { LabelsContext } from '@/contexts/labels-context';
+import { useContext } from 'react';
 
 export default function useLabels() {
-  const { labels, saveLabel, removeLabel, removeAll} = useContext(LabelsContext)
+  const { labels, saveLabel, removeLabel, reorder, removeAll } = useContext(LabelsContext);
 
-  return { labels, saveLabel, removeLabel, removeAll}
+  return { labels, saveLabel, removeLabel, reorder, removeAll };
 }

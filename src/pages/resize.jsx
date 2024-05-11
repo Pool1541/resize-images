@@ -11,17 +11,16 @@ import { useNavigate } from 'react-router-dom';
 export default function Resize() {
   const [isPending, setIsPending] = useState(false);
   const [label, setLabel] = useState('');
-  const { saveLabel } = useLabels();
+  const { saveLabel, reorder } = useLabels();
   const { images } = useImages();
   const resize = useResize();
   const navigate = useNavigate();
 
   function handleChange(e) {
-    if (!e.target) {
-      setLabel(e);
-    } else {
-      setLabel(e.target.value);
-    }
+    const text = e.target ? e.target.value : e;
+
+    setLabel(text);
+    reorder(text);
   }
 
   async function download() {

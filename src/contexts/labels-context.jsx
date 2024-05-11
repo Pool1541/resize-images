@@ -28,12 +28,12 @@ export default function LabelsContextProvider({ children }) {
   }
 
   function reorder(label) {
-    if (!labels.includes(label) || !label) return;
+    if (!labels.includes(label) || labels.length < 2 || !label) return;
     const labelsClone = structuredClone(labels);
     const filteredLabels = labelsClone.filter((el) => el !== label);
     filteredLabels.unshift(label);
 
-    setValue(labelsClone);
+    setValue(filteredLabels);
   }
 
   function removeLabel(labelToRemove) {
