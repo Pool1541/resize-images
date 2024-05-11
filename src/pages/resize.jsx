@@ -9,6 +9,7 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 
 export default function Resize() {
+  const [isPending, setIsPending] = useState(false);
   const [label, setLabel] = useState('');
   const { saveLabel } = useLabels();
   const { images } = useImages();
@@ -24,14 +25,22 @@ export default function Resize() {
   }
 
   async function download() {
-    const resizedImages = await Promise.all(
-      images.map(async ({ file, width }) => {
-        return await resize.resize(file, width);
-      })
-    );
+    try {
+      setIsPending(true);
+      const resizedImages = await Promise.all(
+        images.map(async ({ file, width }) => {
+          return await resize.resize(file, width);
+        })
+      );
 
-    resize.download(resizedImages);
-    saveLabel(label);
+      resize.download(resizedImages, label);
+      saveLabel(label);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsPending(false);
+      handleChange('');
+    }
   }
 
   useEffect(() => {
@@ -56,7 +65,7 @@ export default function Resize() {
 
         <div className='flex flex-col items-center justify-center flex-1'>
           <Rename label={label} changeLabel={handleChange} />
-          <Button className='w-1/2 bg-blue-gray-800' onClick={download}>
+          <Button className='w-1/2 bg-blue-gray-800' onClick={download} disabled={isPending}>
             Descargar
           </Button>
         </div>

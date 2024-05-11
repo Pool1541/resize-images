@@ -1,8 +1,4 @@
-import { TOREMOVE } from "@/config/constants";
-
-export function transformName(name) {
-
-  const regex = new RegExp(TOREMOVE, 'gi')
-  return name.replace(/.png/gi, ".png")
-  .replace(regex, "");
+export function transformName(name, textToRemove) {
+  const regex = new RegExp(textToRemove, 'gi');
+  return name.replace(/.png/gi, '.png').replace(regex, '');
 }

@@ -45,13 +45,13 @@ export default function useResize() {
     });
   }
 
-  function download(files) {
+  function download(files, textToRemove = '') {
     const zip = new JSZip();
 
     if (files.length === 0) return;
 
     files.forEach((file) => {
-      const filename = transformName(file.name)
+      const filename = transformName(file.name, textToRemove);
       zip.file(`assets/${filename}`, file);
     });
 
