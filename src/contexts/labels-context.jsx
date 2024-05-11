@@ -3,16 +3,35 @@ import { createContext } from 'react';
 
 export const LabelsContext = createContext(null);
 
+const LOCALSTORAGE_LABEL_KEY = 'labels';
+const MAX_LABELS_ALLOWED = 6;
+
 export default function LabelsContextProvider({ children }) {
-  const { storedValue: labels, setValue, removeValue } = useLocalStorage('labels', []);
+  const {
+    storedValue: labels,
+    setValue,
+    removeValue,
+  } = useLocalStorage(LOCALSTORAGE_LABEL_KEY, []);
 
   function saveLabel(label) {
-    if (labels.includes(label) || !label) {
-      return;
-    }
+    if (labels.includes(label) || !label) return;
 
     const labelsClone = structuredClone(labels);
-    labelsClone.push(label);
+
+    if (labelsClone.length < MAX_LABELS_ALLOWED) labelsClone.unshift(label);
+    else {
+      labelsClone.pop();
+      labelsClone.unshift(label);
+    }
+
+    setValue(labelsClone);
+  }
+
+  function reorder(label) {
+    if (!labels.includes(label) || !label) return;
+    const labelsClone = structuredClone(labels);
+    const filteredLabels = labelsClone.filter((el) => el !== label);
+    filteredLabels.unshift(label);
 
     setValue(labelsClone);
   }
@@ -27,11 +46,11 @@ export default function LabelsContextProvider({ children }) {
   }
 
   function removeAll() {
-    removeValue('labels');
+    removeValue(LOCALSTORAGE_LABEL_KEY);
   }
 
   return (
-    <LabelsContext.Provider value={{ labels, saveLabel, removeLabel, removeAll }}>
+    <LabelsContext.Provider value={{ labels, saveLabel, removeLabel, reorder, removeAll }}>
       {children}
     </LabelsContext.Provider>
   );
