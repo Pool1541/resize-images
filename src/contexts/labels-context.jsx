@@ -1,18 +1,13 @@
-import useLocalStorage from "@/hooks/useLocalStorage";
-import { createContext } from "react";
+import useLocalStorage from '@/hooks/useLocalStorage';
+import { createContext } from 'react';
 
 export const LabelsContext = createContext(null);
 
 export default function LabelsContextProvider({ children }) {
-  const {
-    storedValue: labels,
-    setValue,
-    removeValue,
-  } = useLocalStorage("labels", []);
+  const { storedValue: labels, setValue, removeValue } = useLocalStorage('labels', []);
 
   function saveLabel(label) {
-
-    if (labels.includes(label)) {
+    if (labels.includes(label) || !label) {
       return;
     }
 
@@ -24,21 +19,19 @@ export default function LabelsContextProvider({ children }) {
 
   function removeLabel(labelToRemove) {
     if (!labels.includes(labelToRemove)) {
-      return
+      return;
     }
 
-    const newLabels = labels.filter(label => label !== labelToRemove);
+    const newLabels = labels.filter((label) => label !== labelToRemove);
     setValue(newLabels);
   }
 
   function removeAll() {
-    removeValue("labels");
+    removeValue('labels');
   }
 
   return (
-    <LabelsContext.Provider
-      value={{ labels, saveLabel, removeLabel, removeAll }}
-    >
+    <LabelsContext.Provider value={{ labels, saveLabel, removeLabel, removeAll }}>
       {children}
     </LabelsContext.Provider>
   );
