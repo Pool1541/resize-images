@@ -11,7 +11,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
-  base: '/resize-images/',
+  base: '/',
   build: {
     outDir: 'build'
   }

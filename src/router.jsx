@@ -7,7 +7,7 @@ import LabelsContextProvider from './contexts/labels-context';
 
 export default function AppRouter() {
   return (
-    <Router basename='/resize-images/'>
+    <Router>
       <HelmetProvider>
         <ImageContextProvider>
           <LabelsContextProvider>
