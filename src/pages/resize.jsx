@@ -3,7 +3,7 @@ import ResizeImageForm from '@/components/resize-image-form';
 import useImages from '@/hooks/useImages';
 import useLabels from '@/hooks/useLabels';
 import useResize from '@/hooks/useResize';
-import { Button } from '@material-tailwind/react';
+import { Button } from '@material-tailwind/react/components/Button';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';

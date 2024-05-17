@@ -1,4 +1,4 @@
-import { Input } from '@material-tailwind/react';
+import { Input } from '@material-tailwind/react/components/Input';
 import TextLabel from './text-label';
 import useLabels from '@/hooks/useLabels';
 

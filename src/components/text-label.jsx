@@ -1,4 +1,4 @@
-import { Button } from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react/components/Button";
 
 export default function TextLabel({ text, onClose, onClick }) {
   return (

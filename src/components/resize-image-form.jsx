@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { Input } from '@material-tailwind/react';
+import { Input } from '@material-tailwind/react/components/Input';
 import ImagePreview from './image-preview';
 
 export default function ResizeImageForm({ imageFile }) {

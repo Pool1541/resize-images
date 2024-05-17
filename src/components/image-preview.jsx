@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Tooltip, Typography } from "@material-tailwind/react";
+import { Tooltip } from "@material-tailwind/react/components/Tooltip";
+import { Typography } from "@material-tailwind/react/components/Typography";
 import { useEffect, useState } from "react";
 
 export default function ImagePreview({ imageFile }) {

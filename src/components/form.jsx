@@ -1,5 +1,5 @@
 import useImages from '@/hooks/useImages';
-import { Button } from '@material-tailwind/react';
+import { Button } from '@material-tailwind/react/components/Button';
 import { useRef } from 'react';
 
 export function Form() {
